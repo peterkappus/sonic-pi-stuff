@@ -1,0 +1,14 @@
+# Welcome to Sonic Pi v3.0.1
+
+use_bpm 120
+
+
+
+live_loop :sally do
+  use_synth :prophet
+  with_fx :echo, decay: 5, phase: 0.5 do
+    #try :major7, :madd9
+    play choose(chord(:E3, :major)), attack: 0, pan: rrand(-1,1), release: 0.4, cutoff: rrand(50, 90)
+    sleep 0.25
+  end
+end
