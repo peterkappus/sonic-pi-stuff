@@ -1,0 +1,35 @@
+# Welcome to Sonic Pi v3.0.1
+use_random_seed(rand(20))
+
+min_co = 50
+max_co = 131
+co_delta = (max_co - min_co) / 8
+
+co = min_co
+
+bar = 0
+#rates = (1,3,6).shuffle
+
+live_loop :base_drum do
+  #sample :bd_haus, cutoff: co
+  co = min_co + (co_delta * bar)
+  bar = (bar + 1) % 8
+  sleep 0.5
+  print co
+end
+
+live_loop :ping do
+  sample :perc_bell, rate: choose(chord(:c0, :min)) * 0.1, cutoff: 90
+  sleep 0.25
+  #sleep 0.0625
+  print co
+end
+
+live_loop :snare do
+  play 60, release: 0.1
+  sample :sn_dolf, cutoff: 130 - co
+  #co = min_co + (co_delta * bar)
+  #bar = (bar + 1) % 8
+  #sync "/live_loop/base_drum"
+  sleep 2
+end
