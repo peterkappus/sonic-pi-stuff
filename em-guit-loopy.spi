@@ -1,0 +1,46 @@
+live_loop :guit do
+  with_fx :echo, mix: 0.3, phase: 0.25 do
+    #sample :guit_em9, rate: 0.25
+    #sample :guit_em9, rate: 1.5
+    #sample :guit_em9, rate: -1.5
+    sleep 1
+    #sample :guit_em9, rate: -2
+  end
+  with_fx :reverb, room: 1 do
+    #sample :guit_em9, rate: 8
+    sleep 4
+    #sample :guit_em9, rate: 4
+  end
+  sleep 8
+end
+
+live_loop :loopy do
+  #with_fx :gverb, mix: 0.4, release: 100, room: 1 do
+  #sample :loop_breakbeat, rate: 0.95, amp: 2
+  #end
+  sleep 2
+end
+
+live_loop :boom do
+  with_fx :reverb, room: 1 do
+    sample :bd_boom, amp: 4, rate: 1
+    sleep 1
+    with_fx :gverb, room: 120, release: rrand(20,80) do
+      #sample :bd_boom, amp: 2, rate: rrand(30,60)
+      sleep 4
+      with_fx :lpf, cutoff: rand(55) + 40, amp: 2 do
+        #sample :drum_cymbal_soft, amp: 2, rate: rrand(0.5,3.5)
+      end
+    end
+  end
+  with_fx :reverb, mix: 0.5, room: 1 do
+    with_fx :echo, rate: 4, phase: 0.5, decay: 300 do
+      #with_fx :flanger,  depth: 80, feedback: 0.1, decay: 1, rate: 30 do
+      #sample :loop_tabla, rate: 1, amp: 1.2
+      #end
+    end
+  end
+  
+  sleep 2
+end
+
